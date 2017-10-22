@@ -1,16 +1,22 @@
 {
-  "name": "backend-starter-code",
+  "name": "Hoopla",
   "version": "1.0.0",
-  "description": "Starter code for an Express/Sequelize backend.",
+  "description": "Silly incarnate! Endlessly playful work.",
   "main": "app.js",
   "scripts": {
     "start": "nodemon -L app.js",
     "test": "jest"
   },
-  "author": "Edgardo Molina",
+  "contributors" : [
+    "Laisa Barros",
+    "Abigail Banting",
+    "Chris Panican",
+    "Adam Ibrahim"
+  ],
   "license": "ISC",
   "devDependencies": {
-    "jest": "^21.2.1"
+    "jest": "^21.2.1",
+    "sequelize-cli": "^3.0.0"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
