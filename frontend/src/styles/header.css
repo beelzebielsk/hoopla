@@ -1,0 +1,22 @@
+#header-logo {
+    width: 100px;
+}
+
+#to-right {
+    float: right;
+    position: relative;
+}
+
+#menu {
+    width: 8px;
+}
+
+.header-button {
+    font-weight: bold;
+}
+
+.header-button:hover {
+    color: purple;
+    text-decoration: underline;
+    text-emphasis: filled;
+}
