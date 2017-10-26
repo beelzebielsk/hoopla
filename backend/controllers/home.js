@@ -30,5 +30,23 @@ router.delete('/:id', (req, res) => {
   });
 });
 
+// Returns all posts on the database
+router.get('/post/', (req, res) => {
+  models.Post.findAll()
+    .then((allPosts) => {
+      res.json(allPosts);
+    })
+});
+
+
+router.get('/post/:title', (req, res) => {
+  models.Post.findAll({
+    where: { title: { $like: '%' + (req.params.title) + '%'}
+  }})
+  .then(post => {
+    res.json(post);
+  })
+});
+
 
 module.exports = router;
