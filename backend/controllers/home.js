@@ -3,7 +3,6 @@ const models = require('../models');
 
 const router = express.Router();
 
-
 router.get('/', (req, res) => {
   res.json({
     msg: "Successful GET to '/' route"
@@ -23,13 +22,6 @@ router.put('/:id', (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
-  res.json({
-    msg: "Successful DELETE to '/' route",
-    id: req.params.id
-  });
-});
-
 // Returns all posts from the database
 router.get('/post/', (req, res) => {
   models.Post.findAll()
@@ -39,20 +31,30 @@ router.get('/post/', (req, res) => {
 });
 
 // Returns the title of the search
+// NOTE: The ilike operator (case-insensitive like) only works on
+// postgresql.
 router.get('/post/:title', (req, res) => {
   models.Post.findAll({
-    where: { 
-      title: { 
+    where: {
+      title: {
         $or: [
-        {$like: '% ' + (req.params.title) + ' %'}, 
-        {$like: (req.params.title) + ' %'}, 
-        {$like: '% ' + (req.params.title)}
+        {$ilike: '%' + (req.params.title) + '%'},
+        {$ilike: (req.params.title) + '%'},
+        {$ilike: '%' + (req.params.title)}
         ]
       }
-    }
-  })  
+    },
+    include: [{
+        model: models.Users,
+        where: { id: models.Sequelize.col('Posts.userId') },
+      }]
+    //include: [models.Users]
+  })
   .then(post => {
     res.json(post);
+  }).catch(err => {
+    res.json("Problem!");
+    throw err;
   })
 });
 
@@ -73,8 +75,5 @@ router.get('/users/:id', (req, res) => {
     res.json(user);
   })
 });
-
-
-
 
 module.exports = router;
