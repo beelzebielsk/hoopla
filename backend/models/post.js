@@ -6,19 +6,16 @@ module.exports = (sequelize, DataTypes) => {
     content: DataTypes.STRING,
     photo: DataTypes.STRING,
     title: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        Post.belongsTo(models.User, {
-          onDelete: 'CASCADE',
-        });
-        Post.hasMany(models.Comment);
-        Post.belongsToMany(models.Category, {
-          through: 'categorizedAs',
-          onDelete: 'CASCADE',
-        });
-      }
-    }
   });
+  Post.associate = function(models) {
+    Post.belongsTo(models.User, {
+      onDelete: 'CASCADE',
+    });
+    Post.hasMany(models.Comment);
+    Post.belongsToMany(models.Category, {
+      through: 'categorizedAs',
+      onDelete: 'CASCADE',
+    });
+  }
   return Post;
 };
