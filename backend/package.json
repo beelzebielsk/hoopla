@@ -7,7 +7,7 @@
     "start": "nodemon -L app.js",
     "test": "jest"
   },
-  "contributors" : [
+  "contributors": [
     "Laisa Barros",
     "Abigail Banting",
     "Chris Panican",
