@@ -4,10 +4,13 @@ const models = require('../models');
 const postController = {
     registerRouter() {
         const router = express.Router();
+
         router.get   ('/'      ,this.index);
         router.get   ('/search',this.search);
         router.post  ('/'      ,this.create);
+        router.get   ('/:id'   ,this.indexOne);
         router.delete('/:id'   ,this.delete);
+        router.put   ('/:id'   ,this.modify);
 
         return router;
     },
@@ -23,6 +26,14 @@ const postController = {
             res.send("Error!");
         })
     },
+
+    indexOne(req, res) {
+        let id = parseInt(req.params.id)
+        models.Post.findById(id)
+        .then(user => {
+            res.json(user);
+        });
+    }
 
     create(req, res) {
         let {content, photo, title, UserId, PostId} = req.body;
@@ -47,10 +58,8 @@ const postController = {
 
     delete(req, res) {
         let id = parseInt(req.params.id);
-        models.sequelize.transaction(transaction => {
-            return models.Post.destroy({
-                where : { id }
-            })
+        models.Post.destroy({
+            where : {id}
         })
         .then(result => {
             console.log("transaction result:");
@@ -80,10 +89,23 @@ const postController = {
                 }
             }
         })  
-            .then(post => {
-                res.json(post);
-            })
+        .then(post => {
+            res.json(post);
+        })
     },
+
+    modify(req, res) {
+        let id = parseInt(req.params.id);
+        let {content, photo, title, userId} = req.body;
+        models.User.update({content, photo, title, userId}, {
+            where: {id}
+        })
+        .catch(err => {
+            console.log("Error:");
+            console.log(err);
+            res.status(500).end();
+        });
+    }
 }
 
 /*

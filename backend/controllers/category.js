@@ -1,7 +1,7 @@
 const express = require('express');
 const models = require('../models');
 
-const commentController = {
+const categoryController = {
     registerRouter() {
         const router = express.Router();
 
@@ -15,50 +15,46 @@ const commentController = {
     },
 
     index(req, res) {
-        models.Comment.findAll()
-        .then((results) => res.json(results))
-        .catch(err => {
-            console.error("Error:");
-            console.error(err);
-            res.status(500).end();
+        models.Category.findAll()
+        .then((results) => {
+            res.json(results);
         })
+        .catch(err => {
+            console.log("Error:");
+            console.log(err);
+            res.status(500).end();
+        });
     },
 
     indexOne(req, res) {
         let id = parseInt(req.params.id)
-        models.Comment.findById(id)
+        models.Category.findById(id)
         .then(result => {
-            res.json(result);
-        })
-        .catch(err => {
-            console.error("Error:");
-            console.error(err);
-            res.status(500).end();
-        })
-    },
-
-    create(req, res) {
-        let {content, replyToId, PostId, UserId} = req.body;
-        // Prevent from becoming NaN and causing problems in
-        // Comment.create.
-        replyToId = replyToId ? parseInt(replyToId) : replyToId;
-        PostId    = PostId    ? parseInt(PostId)    : PostId;
-        UserId    = UserId    ? parseInt(UserId)    : UserId;
-        models.Comment.create({replyToId, PostId, UserId, content})
-        .then(result => {
-            console.log(result);
             res.json(result);
         })
         .catch(err => {
             console.log("Error:");
             console.log(err);
             res.status(500).end();
+        });
+    },
+
+    create(req, res) {
+        let {name} = req.body;
+        models.Category.create({name})
+        .then(result => {
+            res.json(result);
         })
+        .catch(err => {
+            console.log("Error:");
+            console.log(err);
+            res.status(500).end();
+        });
     },
 
     delete(req, res) {
         let id = parseInt(req.params.id);
-        models.Comment.destroy({
+        models.Category.destroy({
             where : {id}
         })
         .then(result => {
@@ -70,22 +66,26 @@ const commentController = {
             console.log("Error:");
             console.log(err);
             res.status(500).end();
-        })
+        });
     },
 
     modify(req, res) {
         let id = parseInt(req.params.id);
-        let {content, replyToId, postId, userId} = req.body;
-        models.Comment.update({content, replyToId, postId, userId}, {
-            where: {id}
+        let {name} = req.body;
+        models.Category.update({name}, {
+            where : {id}
+        })
+        .then(result => {
+            res.json(result);
         })
         .catch(err => {
-            console.error("Error:");
-            console.error(err);
+            console.log("Error:");
+            console.log(err);
             res.status(500).end();
         });
     },
 
 }
 
-module.exports = commentController.registerRouter();
+module.exports = categoryController.registerRouter();
+

@@ -6,25 +6,29 @@ const userController = {
         const router = express.Router();
 
         router.get   ('/'   ,this.index);
-        router.get   ('/:id',this.indexOne);
         router.post  ('/'   ,this.create);
+        router.get   ('/:id',this.indexOne);
         router.delete('/:id',this.delete);
+        router.put   ('/:id',this.modify);
 
         return router;
     },
+
     index(req, res) {
         models.User.findAll()
-        .then((allUsers) => {
-            res.json(allUsers);
+        .then((results) => {
+            res.json(results);
         })
     },
+
     indexOne(req, res) {
         let id = parseInt(req.params.id)
         models.User.findById(id)
-        .then(user => {
-            res.json(user);
+        .then(result => {
+            res.json(result);
         })
-    }
+    },
+
     create(req, res) {
         let {email} = req.body;
         models.User.create({email})
@@ -32,11 +36,12 @@ const userController = {
             res.json(result);
         })
         .catch(err => {
-            console.log("Error:")
-            console.log(err)
+            console.log("Error:");
+            console.log(err);
             res.status(500).end();
         })
     },
+
     delete(req, res) {
         let id = parseInt(req.params.id);
         models.User.destroy({
@@ -53,6 +58,17 @@ const userController = {
             res.status(500).end();
         })
     },
+
+    modify(req, res) {
+        let id = parseInt(req.params.id);
+        let {email} = req.body.email;
+        // TODO: Check to see if the request is coming from the user
+        // of the same id. Consider not putting the id in the URI at
+        // all.
+        models.User.update({email}, {
+            where: {id}
+        })
+    }
 }
 
 module.exports = userController.registerRouter();
