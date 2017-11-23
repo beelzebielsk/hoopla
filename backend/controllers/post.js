@@ -33,7 +33,7 @@ const postController = {
         .then(user => {
             res.json(user);
         });
-    }
+    },
 
     create(req, res) {
         let {content, photo, title, UserId, PostId} = req.body;
@@ -105,7 +105,7 @@ const postController = {
             console.log(err);
             res.status(500).end();
         });
-    }
+    },
 }
 
 /*
