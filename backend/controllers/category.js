@@ -1,87 +1,46 @@
 const express = require('express');
 const models = require('../models');
+const modelController = require('./model-controller');
 
 const categoryController = {
     registerRouter() {
         const router = express.Router();
 
-        router.get   ('/'   ,this.index);
-        router.post  ('/'   ,this.create);
-        router.get   ('/:id',this.indexOne);
-        router.delete('/:id',this.delete);
-        router.put   ('/:id',this.modify);
+        router.get   ('/'   ,modelController.index(this.index));
+        router.post  ('/'   ,modelController.create(this.create));
+        router.get   ('/:id',modelController.indexOne(this.indexOne));
+        router.delete('/:id',modelController.delete(this.delete));
+        router.put   ('/:id',modelController.modify(this.modify));
 
         return router;
     },
 
     index(req, res) {
-        models.Category.findAll()
-        .then((results) => {
-            res.json(results);
-        })
-        .catch(err => {
-            console.log("Error:");
-            console.log(err);
-            res.status(500).end();
-        });
+        return models.Category.findAll();
     },
 
     indexOne(req, res) {
-        let id = parseInt(req.params.id)
-        models.Category.findById(id)
-        .then(result => {
-            res.json(result);
-        })
-        .catch(err => {
-            console.log("Error:");
-            console.log(err);
-            res.status(500).end();
-        });
+        let id = parseInt(req.params.id);
+        return models.Category.findById(id);
     },
 
     create(req, res) {
         let {name} = req.body;
-        models.Category.create({name})
-        .then(result => {
-            res.json(result);
-        })
-        .catch(err => {
-            console.log("Error:");
-            console.log(err);
-            res.status(500).end();
-        });
+        return models.Category.create({name});
     },
 
     delete(req, res) {
         let id = parseInt(req.params.id);
-        models.Category.destroy({
+        return models.Category.destroy({
             where : {id}
-        })
-        .then(result => {
-            console.log("Result:");
-            console.log(result);
-            res.end()
-        })
-        .catch(err => {
-            console.log("Error:");
-            console.log(err);
-            res.status(500).end();
         });
     },
 
     modify(req, res) {
         let id = parseInt(req.params.id);
         let {name} = req.body;
-        models.Category.update({name}, {
+        return models.Category.update({name}, {
             where : {id}
-        })
-        .then(result => {
-            res.json(result);
-        })
-        .catch(err => {
-            console.log("Error:");
-            console.log(err);
-            res.status(500).end();
         });
     },
 

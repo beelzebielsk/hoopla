@@ -8,7 +8,8 @@ router.use(function(req, res, next) {
 });
 
 router.use('/', require('./home'));
-router.use('/post', require('./post'))
-router.use('/comment', require('./comment'))
+router.use('/post', require('./post'));
+router.use('/comment', require('./comment'));
+router.use('/user', require('./user'));
 
 module.exports = router;

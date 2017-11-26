@@ -1,38 +1,31 @@
 const express = require('express');
 const models = require('../models');
+const modelController = require('./model-controller');
 
 const postController = {
     registerRouter() {
         const router = express.Router();
 
-        router.get   ('/'      ,this.index);
         router.get   ('/search',this.search);
-        router.post  ('/'      ,this.create);
-        router.get   ('/:id'   ,this.indexOne);
-        router.delete('/:id'   ,this.delete);
-        router.put   ('/:id'   ,this.modify);
+
+        router.get   ('/'   ,modelController.index(this.index));
+        router.post  ('/'   ,modelController.create(this.create));
+        router.get   ('/:id',modelController.indexOne(this.indexOne));
+        router.delete('/:id',modelController.delete(this.delete));
+        router.put   ('/:id',modelController.modify(this.modify));
 
         return router;
     },
 
     index(req, res) {
-        models.Post.findAll({
+        return models.Post.findAll({
             include : [models.Category]
-        })
-        .then((allPosts) => {
-            res.json(allPosts);
-        })
-        .catch(err => {
-            res.send("Error!");
-        })
+        });
     },
 
     indexOne(req, res) {
         let id = parseInt(req.params.id)
-        models.Post.findById(id)
-        .then(user => {
-            res.json(user);
-        });
+        return models.Post.findById(id)
     },
 
     create(req, res) {
@@ -40,37 +33,23 @@ const postController = {
         UserId = UserId ? parseInt(UserId) : UserId;
         // Only needed if post is a submission.
         PostId = PostId ? parseInt(PostId) : PostId;
-        models.sequelize.transaction(transaction => {
-            return models.Post.create({
-                content, photo, title, UserId, PostId
-            }, {transaction})
-        })
-        .then(result => {
-            console.log("transaction result:");
-            res.json(result.dataValues);
-        })
-        .catch(err => {
-            console.log("Error:")
-            console.log(err)
-            res.status(500).end();
-        });
+        return models.Post.create(
+            {content, photo, title, UserId, PostId});
     },
 
     delete(req, res) {
         let id = parseInt(req.params.id);
-        models.Post.destroy({
+        return models.Post.destroy({
             where : {id}
-        })
-        .then(result => {
-            console.log("transaction result:");
-            console.log(result);
-            res.end();
-        })
-        .catch(err => {
-            console.log("Error:");
-            console.log(err);
-            res.status(500).end();
-        })
+        });
+    },
+
+    modify(req, res) {
+        let id = parseInt(req.params.id);
+        let {content, photo, title, userId} = req.body;
+        return models.User.update({content, photo, title, userId}, {
+            where: {id}
+        });
     },
 
     search(req, res) {
@@ -88,33 +67,16 @@ const postController = {
                     ]
                 }
             }
-        })  
-        .then(post => {
-            res.json(post);
         })
-    },
-
-    modify(req, res) {
-        let id = parseInt(req.params.id);
-        let {content, photo, title, userId} = req.body;
-        models.User.update({content, photo, title, userId}, {
-            where: {id}
+        .then(result => {
         })
         .catch(err => {
-            console.log("Error:");
-            console.log(err);
-            res.status(500).end();
+            console.error("Error!");
+            console.error(err);
+            res.status(500).end()
         });
     },
-}
 
-/*
- * TODO: Look up concept of URI. Perhaps the method of access of a
- * resource should be uniform across this controller (ie if you want
- * to get/update/delete the record with id == 21, then the URL is
- * site/post/byId/21, and you just specify different methods for the
- * different actions. Right now, we have very similar looking URIs,
- * one for title and for id.
- */
+}
 
 module.exports = postController.registerRouter();
