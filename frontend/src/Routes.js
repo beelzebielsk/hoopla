@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from './Home';
-import ResultDetail from './ResultDetail';
-import ResultList from './ResultList';
-import Submission from './Submission';
-import ChallengePage from './ChallengePage';
-import Search from './Search';
+import Home from './components/Home';
+import ResultDetail from './components/ResultDetail';
+import ResultList from './components/ResultList';
+import Submission from './components/Submission';
+import ChallengePage from './components/ChallengePage';
+import Search from './components/Search';
 
 class Routes extends Component {
     render() {

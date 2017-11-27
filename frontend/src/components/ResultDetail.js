@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './styles/resultdetail.css';
+import '../styles/resultdetail.css';
 import { Card, CardTitle, Icon } from 'react-materialize';
 
 class ResultDetail extends Component {

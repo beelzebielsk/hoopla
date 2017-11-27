@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Button, Icon } from 'react-materialize';
-import './styles/search.css';
+import '../styles/search.css';
 
 function Title(props) {
     return (

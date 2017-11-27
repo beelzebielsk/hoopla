@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Button } from 'react-materialize';
-import './styles/submission.css';
+import '../styles/submission.css';
 
 class Submission extends Component {
     render() {

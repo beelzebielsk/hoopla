@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './styles/header.css';
+import '../styles/header.css';
 import { Link } from 'react-router-dom';
 import { Navbar, NavItem, Icon, Input } from 'react-materialize';
 
