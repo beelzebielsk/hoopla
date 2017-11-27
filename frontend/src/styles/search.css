@@ -1,0 +1,147 @@
+#search-bar {
+    height: 44px;
+    border-bottom: 1px solid #FFF;
+    font-family: 'Open Sans', sans-serif;
+    color: #FFF;
+}
+
+.btn {
+    border-radius: 0;
+    height: 45px;
+}
+
+.bckg-search {
+    background-color: #0C77CF;
+}
+
+.cf:before, .cf:after{
+    content:"";
+    display:table;
+}
+
+.cf:after{
+    clear:both;
+}
+
+.cf{
+    zoom:1;
+}
+/* Form wrapper styling */
+.form-wrapper {
+    width: 450px;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.form-wrapper input[type=search]:focus {
+    color: #FFF;
+    background-color: transparent;
+    outline: 0;
+}
+
+.form-wrapper input[type=search]:active {
+    color: #FFF;
+    background-color: transparent;
+    outline: 0;
+}
+
+.form-wrapper input[type=search]::-webkit-input-placeholder {
+    color: #FFF;
+    font-weight: normal;
+}
+
+.form-wrapper input[type=search]:-moz-placeholder {
+    color: #FFF;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.form-wrapper input[type=search]:-ms-input-placeholder {
+    color: #FFF;
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* Form submit button */
+.form-wrapper button {
+    overflow: visible;
+    position: relative;
+    top: -60px;
+    float: right;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    height: 45px;
+    width: 45px;
+    color: #FFF;
+    background: transparent;
+    box-shadow: none;
+}
+
+.form-wrapper button:hover {
+    box-shadow: none;
+    color: #000;
+    background: #FFF;
+}
+
+.form-wrapper button:focus {
+    color: #000;
+    background: #FFF;
+}
+
+.input-field label {
+    color: #FFF;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.input-field input[type=search]:focus {
+    background-color: transparent;
+    color: #FFF;
+}
+
+input[type=search]:focus:not([readonly])+label {
+    color: #FFF;
+}
+
+.select-wrapper input.select-dropdown {
+    font-family: 'Open Sans', sans-serif;
+    color: #FFF;
+    width: 200px;
+    border-bottom: 1px solid #FFF;
+    height: 30px;
+}
+
+.select-wrapper {
+    width: 200px;
+}
+
+.select-wrapper span.caret {
+    color: #FFF;
+    font-size: 14px;
+    position: relative;
+    right: -180px;
+    top: 20px;
+}
+
+.dropdown-content li>span {
+    font-size: 14px;
+    margin-left: 6px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+@media screen and (max-width: 440px) {
+    .form-wrapper input[type=search] {
+        width: 150px;
+    }
+    .form-wrapper button {
+        position: relative;
+        right: -30px;
+    }
+    .form-wrapper {
+        width: 200px;
+    }
+    .select-wrapper span.caret {
+        top: 50px;
+    }
+}
