@@ -109,6 +109,7 @@ module.exports = {
       posts.map((post, index) => { return {
         id: index,
         title: post.title,
+        content: post.content,
         userId: post.userId,
         createdAt: new Date(),
         updatedAt: new Date(),
