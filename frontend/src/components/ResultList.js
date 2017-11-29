@@ -6,29 +6,29 @@ class ResultList extends Component {
         super(props);
     }
 
-    // renderCards(){
-    //     if(this.props.cards.length === 0) {
-    //         return (<div><p>No results</p></div>);
-    //     }
-    //
-    //     else {
-    //         /* each key is unique */
-    //         return (this.props.cards.map(card =>
-    //             <ResultDetail
-    //                 key={card.id}
-    //                 imageSource={require("")}
-    //                 cardTitle={card.title}
-    //                 description={card.description}
-    //                 moreInfo="/path"
-    //                 participate="/anotherpath"
-    //             />));
-    //     }
-    // }
+    renderCards(){
+        if(this.props.cards.length === 0) {
+            return (<div><p>No results</p></div>);
+        }
+    
+        else {
+            /* each key is unique */
+            console.warn(this.props.cards);
+            return (this.props.cards.map(card =>
+                <ResultDetail
+                    key={card.id}
+                    cardTitle={card.title}
+                    description={card.content}
+                    moreInfo="/"
+                    participate="/createChallenge"
+                />));
+        }
+    }
 
     render() {
         return (
             <div>
-                {/*{this.renderCards()}*/}
+                {this.renderCards()}
             </div>
         );
     }
