@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import { Input, Button, Icon } from 'react-materialize';
 import '../styles/search.css';
-
-function Title(props) {
-    return (
-        <div>
-            <p>{props.postData.title}</p>
-        </div>
-    );
-}
+import ResultList from './ResultList';
 
 class Search extends Component {
     constructor(props){
         super(props);
         this.state = {
             post: '',
-            data: [<div className="center-block">No Results</div>]
+            data: []
         };
         this.updatePost = this.updatePost.bind(this);
         this.searchPost = this.searchPost.bind(this);
@@ -31,7 +24,7 @@ class Search extends Component {
     searchPost(e) {
         if(this.state.post === '') {
             this.setState({
-                data: [<div className="center-block">No Result</div>]
+                data: []
             })
         }else {
             fetch('http://localhost:8000/post/' + this.state.post)
@@ -43,17 +36,14 @@ class Search extends Component {
                     }
                 }).then((respJson) => {
                 const titles = respJson.map(item => {
-                    return <Title postData={item} />
-                    /* take into consideration whether or not this item has an image. If it doesn't
-                     * use hoopla-logo.png as default. Logic is not implemented yet */
-                    // return <ResultDetail cardTitle={item} imageSource={require('./images/hoopla-logo.png')} moreDetail="/createChallenge" participate="/postChallenge"/>
+                    console.warn(item);
+                    return item;
                 });
 
                 this.setState({
                     data: titles
                 })
             })
-
             e.preventDefault();
         }
     }
@@ -79,8 +69,8 @@ class Search extends Component {
                             <option value='5'>Video</option>
                         </Input>
                     </form>
-                    {this.state.data}
                 </form>
+                <ResultList cards={this.state.data}/>
             </div>
         );
     }
