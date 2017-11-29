@@ -28,13 +28,12 @@ class Search extends Component {
         })
     }
 
-    searchPost() {
+    searchPost(e) {
         if(this.state.post === '') {
             this.setState({
                 data: [<div className="center-block">No Result</div>]
             })
         }else {
-
             fetch('http://localhost:8000/post/' + this.state.post)
                 .then((resp) => {
                     if(resp.ok){
@@ -54,8 +53,9 @@ class Search extends Component {
                     data: titles
                 })
             })
-        }
 
+            e.preventDefault();
+        }
     }
 
     render() {
@@ -69,7 +69,7 @@ class Search extends Component {
                         label="Search"
                         value={this.state.post}
                         onChange={this.updatePost}/>
-                    <Button onClick={this.searchPost}><Icon>search</Icon></Button>
+                    <Button onClick={(e) => this.searchPost(e)}><Icon>search</Icon></Button>
                     <form className="select-wrapper">
                         <Input type='select' defaultValue='1'>
                             <option value='1'>Select...</option>
@@ -79,6 +79,7 @@ class Search extends Component {
                             <option value='5'>Video</option>
                         </Input>
                     </form>
+                    {this.state.data}
                 </form>
             </div>
         );
