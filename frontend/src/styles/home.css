@@ -1,4 +1,5 @@
-.form-control {
-    display: inline;
-    width: 70%;
+.results {
+    margin: auto;
+    padding-bottom: 40px;
+    background: #efefef;
 }

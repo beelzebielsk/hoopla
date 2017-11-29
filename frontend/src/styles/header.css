@@ -1,22 +1,82 @@
-#header-logo {
-    width: 100px;
+nav {
+    background-color: #660099;
 }
 
-#to-right {
-    float: right;
-    position: relative;
+nav .brand-logo {
+    font-family: 'Signika Negative', sans-serif;
+    color: #FFF;
+    margin: 0 15px;
 }
 
-#menu {
-    width: 8px;
+nav ul a {
+    background-color: #660099;
+    font-family: 'Open Sans', sans-serif;
 }
 
-.header-button {
-    font-weight: bold;
+nav ul a:hover {
+    background-color: #DA3B24;
 }
 
-.header-button:hover {
-    color: purple;
+.brand-logo a:hover {
+    color: #FFD700;
+}
+
+.side-nav a {
+    color: #FFF;
+}
+
+.side-nav a:hover {
+    background-color: #DA3B24;
+}
+
+.side-nav li>a>i.material-icons {
+    color: #FFF;
+}
+
+#input_0 {
+    position: absolute;
+    width: 120px;
+    height: 70px;
+    margin: 0;
+    padding-left: 100px;
+}
+
+#input_0:hover, #input_0:focus, #input_0:active {
+    display: block;
+    color: #FFF;
+    padding-left: -15px;
+    width: 120px;
+    border-bottom: 1px solid #FFF;
+    position: absolute;
+}
+
+nav .input-field label {
+    color: #FFF;
+    padding-left: 15px;
     text-decoration: underline;
-    text-emphasis: filled;
+    font-size: 16px;
+}
+
+nav .input-field label:hover {
+    color: #FFF;
+    text-decoration: none;
+}
+
+nav .input-field label.active {
+    position: relative;
+    bottom: 0;
+}
+
+.wrap-header {
+    background: #0C77CF;
+}
+
+#search-icon > a > i {
+    margin-right: 200px;
+    position: relative;
+    right: 0;
+}
+
+.side-nav li>a>i.material-icons {
+    visibility: hidden;
 }
