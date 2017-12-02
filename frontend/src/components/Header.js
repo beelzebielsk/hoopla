@@ -1,9 +1,35 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import '../styles/header.css';
 import { Link } from 'react-router-dom';
-import { Navbar, NavItem, Icon, Input } from 'react-materialize';
+import { Navbar, NavItem, Icon, Input, Button } from 'react-materialize';
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            post: '',
+            redirect: false
+        }
+        this.newSearch = this.newSearch.bind(this);
+        this.updatePost = this.updatePost.bind(this);
+    }
+
+    updatePost(evt) {
+        let postStr = evt.target.value;
+        this.setState({
+            post: postStr
+        })
+    }
+
+    newSearch(e) {
+        this.setState({
+            redirect: true
+        });
+        e.preventDefault();
+    }
+
+
     render() {
         return (
             <div className="wrap-header">
@@ -11,8 +37,21 @@ class Header extends Component {
                     <NavItem href="/home">Our Team</NavItem>
                     <NavItem href="/createChallenge">Create Challenge</NavItem>
                     <NavItem className="hide-on-mobile" id="search-icon" href="#">
-                        <Input autocomplete="off" label="Search" className="search-inp" type="search" onsearch={console.log('works')}/>
-                        <Icon>search</Icon>
+                        <form>
+                            <Input autocomplete="off" 
+                                   label="Search" 
+                                   className="search-inp" 
+                                   type="search"
+                                   value={this.state.post}
+                                   onChange={this.updatePost}
+                                   onsearch={(e) => this.newSearch(e)}
+                                   />
+                            <Button onClick={(e) => this.newSearch(e)}><Icon>search</Icon></Button>
+                        </form>
+                        {this.state.redirect && <Redirect to={{
+                            pathname: '/search',
+                            state: {post: this.state.post}
+                        }}/>}
                     </NavItem>
                     <NavItem className="hide-on-mobile" href="#"><Icon>more_vert</Icon> </NavItem>
                 </Navbar>
