@@ -6,12 +6,30 @@ import ResultList from './ResultList';
 class Search extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            post: '',
-            data: []
-        };
+
+        try {
+            if (this.props.location.state.post.length !== 0){
+                this.state = {
+                    post: this.props.location.state.post,
+                    data: []
+                };
+                this.fetchResults();
+            }else{
+                this.setInitialState();
+            }
+        } catch(error) {
+            this.setInitialState();
+        }
+
         this.updatePost = this.updatePost.bind(this);
         this.searchPost = this.searchPost.bind(this);
+    }
+
+    setInitialState() {
+        this.state = {
+                post: '',
+                data: []
+            };
     }
 
     updatePost(evt) {
@@ -21,34 +39,39 @@ class Search extends Component {
         })
     }
 
+    fetchResults() {
+        console.warn("CURRENT STATE:", this.state.post)
+        fetch('http://localhost:8000/post/' + this.state.post)
+            .then((resp) => {
+                if(resp.ok){
+                    return resp.json();
+                }else{
+                    return [];
+                }
+            }).then((respJson) => {
+            const titles = respJson.map(item => {
+                return item;
+            });
+
+            this.setState({
+                data: titles
+            })
+        })
+    }
+
     searchPost(e) {
         if(this.state.post === '') {
             this.setState({
                 data: []
             })
         }else {
-            fetch('http://localhost:8000/post/' + this.state.post)
-                .then((resp) => {
-                    if(resp.ok){
-                        return resp.json();
-                    }else{
-                        return [];
-                    }
-                }).then((respJson) => {
-                const titles = respJson.map(item => {
-                    console.warn(item);
-                    return item;
-                });
-
-                this.setState({
-                    data: titles
-                })
-            })
+            this.fetchResults();
             e.preventDefault();
         }
     }
 
     render() {
+
         return (
             <div className="bckg-search">
                 <form className="form-wrapper cf">

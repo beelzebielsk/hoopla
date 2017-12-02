@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import ResultDetail from './ResultDetail';
 
 class ResultList extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     renderCards(){
         if(this.props.cards.length === 0) {
             return (<div><p>No results</p></div>);
