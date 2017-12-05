@@ -8,6 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      username: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       email: {
         type: Sequelize.STRING
       },
@@ -18,6 +22,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      password: {
+        allowNull: false,
+        type: Sequelize.STRING
       }
     });
   },
