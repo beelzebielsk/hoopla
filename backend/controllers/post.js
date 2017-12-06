@@ -30,7 +30,6 @@ const postController = {
     },
 
     indexOne(req, res) {
-        console.log("Entering indexOne.------------------------------");
         let id = parseInt(req.params.id)
         return models.Post.findById(id)
     },
@@ -60,7 +59,6 @@ const postController = {
     },
 
     search(req, res) {
-        console.log("Entering search.");
         let {title, categories} = req.query;
         if (!Array.isArray(categories)) {
             categories = [categories];
@@ -93,9 +91,6 @@ const postController = {
         let postId = parseInt(req.params.id);
         models.Post.findById(postId)
         .then(result => {
-            //console.log(result);
-            //console.log("User's id:", id);
-            //console.log("Post's id:", postId);
             if (result === null) {
                 next();
             } else if (result.UserId == id) {
