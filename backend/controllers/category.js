@@ -1,6 +1,7 @@
 const express = require('express');
 const models = require('../models');
 const modelController = require('./model-controller');
+const { guard } = require('./authenticator');
 
 const categoryController = {
     registerRouter() {
@@ -9,7 +10,7 @@ const categoryController = {
         router.get   ('/'   ,modelController.index(this.index));
         router.post  ('/'   ,modelController.create(this.create));
         router.get   ('/:id',modelController.indexOne(this.indexOne));
-        router.delete('/:id',modelController.delete(this.delete));
+        router.delete('/:id',modelController.destroy(this.destroy));
         router.put   ('/:id',modelController.modify(this.modify));
 
         return router;
@@ -29,7 +30,7 @@ const categoryController = {
         return models.Category.create({name});
     },
 
-    delete(req, res) {
+    destroy(req, res) {
         let id = parseInt(req.params.id);
         return models.Category.destroy({
             where : {id}

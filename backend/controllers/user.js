@@ -1,21 +1,28 @@
 const express = require('express');
 const models = require('../models');
 const modelController = require('./model-controller');
+const { guard } = require('./authenticator');
 
 const userController = {
     registerRouter() {
         const router = express.Router();
 
-        router.get   ('/'   ,modelController.index(this.index));
-        router.post  ('/'   ,modelController.create(this.create));
-        router.get   ('/:id',modelController.indexOne(this.indexOne));
-        router.delete('/:id',modelController.delete(this.delete));
-        router.put   ('/:id',modelController.modify(this.modify));
+        const index    = modelController.index(this.index);
+        const create   = modelController.create(this.create);
+        const indexOne = modelController.indexOne(this.indexOne);
+        const destroy  = modelController.destroy(this.destroy);
+        const modify   = modelController.modify(this.modify);
+
+        router.get   ('/'   ,index);
+        router.post  ('/'   ,create);
+        router.get   ('/:id',indexOne);
+        router.delete('/:id',guard, this.ownerGuard, destroy);
+        router.put   ('/:id',guard, this.ownerGuard, modify);
 
         return router;
     },
 
-    indexOne(req, res){
+    indexOne(req, res) {
         let id = parseInt(req.params.id);
         return models.User.findById(id);
     },
@@ -25,12 +32,12 @@ const userController = {
     },
 
     create(req, res) {
-        let {email} = req.body;
-        return models.User.create({email});
+        let {email, password, username} = req.body;
+        return models.User.create({email, username, password});
     },
 
-    // Returns number of items deleted.
-    delete(req, res) {
+    // Returns number of items destroyd.
+    destroy(req, res) {
         let id = parseInt(req.params.id);
         return models.User.destroy({
             where : {id}
@@ -45,6 +52,14 @@ const userController = {
         return models.User.update({email}, {
             where: {id}
         });
+    },
+
+    ownerGuard(req, res, next) {
+        if (req.params.id === req.user.id) {
+            next()
+        } else {
+            res.status(401).send("Unauthorized.");
+        }
     },
 }
 
