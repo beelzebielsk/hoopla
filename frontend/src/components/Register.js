@@ -14,6 +14,8 @@ class Register extends Component {
                     <Input type="text" id="email-user"/>
                     <label>Password</label>
                     <Input type="password" id="password-user"/>
+                    <label>Confirm Password</label>
+                    <Input type="password" id="password-user"/>
 
                     <form className="button-wrap">
                         <Button>Submit</Button>
