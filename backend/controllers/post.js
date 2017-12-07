@@ -23,15 +23,38 @@ const postController = {
         return router;
     },
 
+    /*
     index(req, res) {
         return models.Post.findAll({
             include : [models.Category]
         });
     },
+    */
+
+    index(req, res) {
+        return models.Post.findAll();
+    },
+
 
     indexOne(req, res) {
         let id = parseInt(req.params.id)
         return models.Post.findById(id)
+    },
+
+    indexByTitle(req, res) {
+        let title = parseInt(req.params.title);
+        models.Post.findAll({
+            where : {
+                title: { 
+                    $or: [
+                        {$like: '%' + (req.params.title) + '%'}, 
+                        {$like: (req.params.title) + '%'}, 
+                        {$like: '%' + (req.params.title)}
+                    ]
+                }
+            }
+        });
+
     },
 
     create(req, res) {
@@ -67,9 +90,9 @@ const postController = {
             where: { 
                 title: { 
                     $or: [
-                        {$like: '% ' + (title) + ' %'}, 
-                        {$like: (title) + ' %'}, 
-                        {$like: '% ' + (title)}
+                        {$like: '%' + (title) + '%'}, 
+                        {$like: (title) + '%'}, 
+                        {$like: '%' + (title)}
                     ]
                 }
             }

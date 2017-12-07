@@ -40,8 +40,12 @@ class Search extends Component {
     }
 
     fetchResults() {
-        console.warn("CURRENT STATE:", this.state.post)
-        fetch('http://localhost:8000/post/' + this.state.post)
+        console.warn("CURRENT STATE:", this.state.post);
+        let title = this.state.post;
+        let searchURL = 'http://localhost:8000/posts/search';
+        let searchParams = new URLSearchParams();
+        searchParams.append('title', title);
+        fetch(`${searchURL}?${searchParams.toString()}`)
             .then((resp) => {
                 if(resp.ok){
                     return resp.json();

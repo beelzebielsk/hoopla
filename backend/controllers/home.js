@@ -38,41 +38,47 @@ router.get('/post/', (req, res) => {
     })
 });
 
-// Returns the title of the search
+/*
+    // Returns the title of the search
 router.get('/post/:title', (req, res) => {
-  models.Post.findAll({
-    where: { 
-      title: { 
-        $or: [
-        {$like: '% ' + (req.params.title) + ' %'}, 
-        {$like: (req.params.title) + ' %'}, 
-        {$like: '% ' + (req.params.title)}
-        ]
-      }
-    }
-  })  
-  .then(post => {
-    res.json(post);
-  })
+    models.Post.findAll({
+        where: { 
+            title: { 
+                $or: [
+                    {$like: '% ' + (req.params.title) + ' %'}, 
+                    {$like: (req.params.title) + ' %'}, 
+                    {$like: '% ' + (req.params.title)}
+                ]
+            }
+        }
+    })  
+        .then(post => {
+            res.json(post);
+        })
 });
+*/
 
-// Returns all users from the database
+/*
+    // Returns all users from the database
 router.get('/users/', (req, res) => {
-  models.User.findAll()
-  .then((allUsers) => {
-    res.json(allUsers);
-  })
+    models.User.findAll()
+        .then((allUsers) => {
+            res.json(allUsers);
+        })
 });
+*/
 
-// Returns specific user id
+/*
+    // Returns specific user id
 router.get('/users/:id', (req, res) => {
-  models.User.findAll({
-    where: { id: (req.params.id)}
-  })
-  .then(user => {
-    res.json(user);
-  })
+    models.User.findAll({
+        where: { id: (req.params.id)}
+    })
+        .then(user => {
+            res.json(user);
+        })
 });
+*/
 
 
 

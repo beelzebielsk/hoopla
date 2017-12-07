@@ -13,9 +13,10 @@ router.use(function(req, res, next) {
 });
 
 //router.use('/', require('./home'));
-router.use('/post', require('./post'));
-router.use('/comment', require('./comment'));
-router.use('/user', require('./user'));
+router.use('/posts', require('./post'));
+router.use('/comments', require('./comment'));
+router.use('/users', require('./user'));
+router.use('/categories', require('./category'));
 router.use('/login', require('./login'));
 
 module.exports = router;
