@@ -1,0 +1,17 @@
+.registration-form {
+    background: #0C77CF;
+    margin: auto;
+    padding: 40px;
+}
+
+.registration-form h4 {
+    margin: 0 0 50px 0;
+    color: #FFF;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#password-user {
+	border-bottom: 1px solid white;
+	color: white;
+}
