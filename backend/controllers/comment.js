@@ -1,16 +1,23 @@
 const express = require('express');
 const models = require('../models');
 const modelController = require('./model-controller');
+const { guard } = require('./authenticator');
 
 const commentController = {
     registerRouter() {
         const router = express.Router();
 
-        router.get   ('/'   ,modelController.index(this.index));
-        router.post  ('/'   ,modelController.create(this.create));
-        router.get   ('/:id',modelController.indexOne(this.indexOne));
-        router.delete('/:id',modelController.delete(this.delete));
-        router.put   ('/:id',modelController.modify(this.modify));
+        const index    = modelController.index(this.index);
+        const create   = modelController.create(this.create);
+        const indexOne = modelController.indexOne(this.indexOne);
+        const destroy  = modelController.destroy(this.destroy);
+        const modify   = modelController.modify(this.modify);
+
+        router.get   ('/'   ,index);
+        router.post  ('/'   ,guard, create);
+        router.get   ('/:id',indexOne);
+        router.delete('/:id',guard, this.ownerGuard, destroy);
+        router.put   ('/:id',guard, this.ownerGuard, modify);
 
         return router;
     },
@@ -34,7 +41,7 @@ const commentController = {
         return models.Comment.create({replyToId, PostId, UserId, content});
     },
 
-    delete(req, res) {
+    destroy(req, res) {
         let id = parseInt(req.params.id);
         return models.Comment.destroy({
             where : {id}
@@ -48,6 +55,25 @@ const commentController = {
             {content, replyToId, postId, userId}, {
             where: {id}
         });
+    },
+
+    ownerGuard(req, res, next) {
+        let {id} = req.user;
+        let commentId = parseInt(req.params.id);
+        models.Comment.findById(commentId)
+        .then(result => {
+            //console.log(result);
+            //console.log("User's id:", id);
+            //console.log("Comment's id:", commentId);
+            if (result === null) {
+                // Let the normal handler handle this.
+                next();
+            } else if (result.UserId === id) {
+                next();
+            } else {
+                res.status(401).json("Unauthorized.");
+            }
+        })
     },
 
 }

@@ -12,8 +12,8 @@ const express = require('express');
  * - Obtaining a specific resource noted by a URI.
  * - Obtaining all resources.
  *
- * The create/index/delete/create Route functions expect for create,
- * index, delete, and creation functions to be defined on the object.
+ * The create/index/destroy/create Route functions expect for create,
+ * index, destroy, and creation functions to be defined on the object.
  * Those functions should return a promise, as sequelize functions do.
  * The route functions wrap the task of getting stuff from a database
  * in webserver functionality, defining standard actions for returning
@@ -71,7 +71,7 @@ module.exports = {
         }
     },
 
-    delete(handler) {
+    destroy(handler) {
         return (req, res) => {
             handler(req, res)
             .then(result => {
