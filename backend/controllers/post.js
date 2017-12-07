@@ -41,22 +41,6 @@ const postController = {
         return models.Post.findById(id)
     },
 
-    indexByTitle(req, res) {
-        let title = parseInt(req.params.title);
-        models.Post.findAll({
-            where : {
-                title: { 
-                    $or: [
-                        {$like: '%' + (req.params.title) + '%'}, 
-                        {$like: (req.params.title) + '%'}, 
-                        {$like: '%' + (req.params.title)}
-                    ]
-                }
-            }
-        });
-
-    },
-
     create(req, res) {
         let {content, photo, title, UserId, PostId} = req.body;
         UserId = UserId ? parseInt(UserId) : UserId;
