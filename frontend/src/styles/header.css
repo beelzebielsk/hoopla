@@ -35,17 +35,15 @@ nav ul a:hover {
 
 #input_0 {
     position: absolute;
-    width: 120px;
+    width: 150px;
     height: 70px;
     margin: 0;
-    padding-left: 100px;
+    padding-left: 75px;
 }
 
 #input_0:hover, #input_0:focus, #input_0:active {
     display: block;
     color: #FFF;
-    padding-left: -15px;
-    width: 120px;
     border-bottom: 1px solid #FFF;
     position: absolute;
 }
@@ -64,6 +62,7 @@ nav .input-field label:hover {
 
 nav .input-field label.active {
     position: relative;
+    padding: -100px;
     bottom: 0;
 }
 
@@ -72,11 +71,22 @@ nav .input-field label.active {
 }
 
 #search-icon > a > i {
-    margin-right: 200px;
-    position: relative;
-    right: 0;
+    /*margin-right: 200px;*/
+    /*position: relative;*/
+    /*right: 0;*/
 }
 
 .side-nav li>a>i.material-icons {
     visibility: hidden;
+}
+
+.spacing {
+    margin-right: 150px;
+    margin-left: -25px;
+}
+
+#search-btn {
+    box-shadow: none;
+    background-color: transparent;
+    margin-bottom: 15px;
 }

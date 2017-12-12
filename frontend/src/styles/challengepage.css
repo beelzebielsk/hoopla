@@ -1,0 +1,96 @@
+.center-page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.challenge-image {
+    width: 460px;
+    max-height: 500px;
+    overflow: hidden;
+    border-radius: 0;
+    float: left;
+}
+
+.posted-by {
+    font-size: 16px;
+}
+
+.user-info {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.owner-image {
+    width: 80px;
+    max-height: 80px;
+    overflow: hidden;
+    border-radius: 50%;
+    float: left;
+}
+
+.description-challenge {
+    max-width: 420px;
+    margin-left: 20px;
+    float: left;
+}
+
+.block {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 20px 20%;
+    font-family: 'Open Sans', sans-serif;
+    background: #efefef;
+    width: 100%;
+}
+
+h3 {
+    font-family: 'Signika Negative', sans-serif;
+    font-weight: bold;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.participate {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.participate button {
+    background: #DA3B24;
+}
+
+.participate button:hover {
+    background: #FF6666;
+}
+
+#input_2, #input_2:active, #input_2:focus {
+    background: transparent;
+    border-bottom: 1px solid #000;
+    box-shadow: none;
+    color: #000;
+}
+
+#input_2::-webkit-input-placeholder {
+    color: #888;
+}
+
+.comment-button {
+    background: #0C77CF;
+    position: relative;
+    float: right;
+}
+
+.comment-button:hover {
+    background-color: #6eb9f7;
+}
+
+.owner-name {
+    margin:10px;
+    padding: 5px 0;
+}

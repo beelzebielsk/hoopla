@@ -11,7 +11,7 @@ class ResultDetail extends Component {
                 title={this.props.cardTitle}
                 reveal={
                     <p>
-                        {this.props.description}
+                        Suspendisse id dui commodo, hendrerit erat in, suscipit nisi. Morbi...
                         <Link to={{ pathname: this.props.moreDetail }}>Read More</Link>
                     </p>}>
                 <p>

@@ -37,16 +37,15 @@ class Header extends Component {
                     <NavItem href="/home">Our Team</NavItem>
                     <NavItem href="/createChallenge">Create Challenge</NavItem>
                     <NavItem className="hide-on-mobile" id="search-icon" href="#">
-                        <form>
-                            <Input autocomplete="off" 
-                                   label="Search" 
-                                   className="search-inp" 
+                        <form className="spacing">
+                            <Input autocomplete="off"
+                                   placeholder="Search"
                                    type="search"
                                    value={this.state.post}
                                    onChange={this.updatePost}
                                    onsearch={(e) => this.newSearch(e)}
                                    />
-                            <Button onClick={(e) => this.newSearch(e)}><Icon>search</Icon></Button>
+                            <Button id="search-btn" onClick={(e) => this.newSearch(e)}><Icon>search</Icon></Button>
                         </form>
                         {this.state.redirect && <Redirect to={{
                             pathname: '/search',
