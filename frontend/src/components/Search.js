@@ -23,12 +23,14 @@ class Search extends Component {
 
         this.updatePost = this.updatePost.bind(this);
         this.searchPost = this.searchPost.bind(this);
+        this.updateValue = this.updateValue.bind(this);
     }
 
     setInitialState() {
         this.state = {
                 post: '',
-                data: []
+                data: [],
+                value: 'All'
             };
     }
 
@@ -39,12 +41,22 @@ class Search extends Component {
         })
     }
 
+    updateValue(evt) {
+        this.setState({
+            value: evt.target.value
+        })
+    }
+
     fetchResults() {
-        console.warn("CURRENT STATE:", this.state.post);
         let title = this.state.post;
-        let searchURL = 'http://localhost:8000/posts/search';
         let searchParams = new URLSearchParams();
         searchParams.append('title', title);
+
+        let searchURL = 'http://localhost:8000/posts/search';
+        if (this.state.value === 'Users') {
+            searchURL = 'http://localhost:8000/users/search';
+        }
+
         fetch(`${searchURL}?${searchParams.toString()}`)
             .then((resp) => {
                 if(resp.ok){
@@ -70,8 +82,8 @@ class Search extends Component {
             })
         }else {
             this.fetchResults();
-            e.preventDefault();
         }
+        e.preventDefault();
     }
 
     render() {
@@ -88,16 +100,14 @@ class Search extends Component {
                         onChange={this.updatePost}/>
                     <Button onClick={(e) => this.searchPost(e)}><Icon>search</Icon></Button>
                     <form className="select-wrapper">
-                        <Input type='select' defaultValue='1'>
-                            <option value='1'>Select...</option>
-                            <option value='2'>Art</option>
-                            <option value='3'>Coding</option>
-                            <option value='4'>Music</option>
-                            <option value='5'>Video</option>
+                        <Input type='select' defaultValue={this.state.value} onChange={this.updateValue}>
+                            <option value='All'>Select...</option>
+                            <option value='Posts'>Posts</option>
+                            <option value='Users'>Users</option>
                         </Input>
                     </form>
                 </form>
-                <ResultList cards={this.state.data}/>
+                <ResultList cards={this.state.data} val={this.state.value}/>
             </div>
         );
     }

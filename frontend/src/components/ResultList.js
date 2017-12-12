@@ -9,15 +9,25 @@ class ResultList extends Component {
     
         else {
             /* each key is unique */
-            console.warn(this.props.cards);
-            return (this.props.cards.map(card =>
-                <ResultDetail
-                    key={card.id}
-                    cardTitle={card.title}
-                    description={card.content}
-                    moreInfo="/"
-                    participate="/createChallenge"
-                />));
+            switch(this.props.val) {
+                case 'Users':
+                    return (this.props.cards.map(card =>
+                        <ResultDetail
+                            key={card.id}
+                            cardTitle={card.username}
+                            moreInfo="/"
+                        />));
+                default:
+                    return (this.props.cards.map(card =>
+                        <ResultDetail
+                            key={card.id}
+                            cardTitle={card.title}
+                            description={card.content}
+                            moreInfo="/"
+                            participate="/createChallenge"
+                        />));
+            }
+            
         }
     }
 
