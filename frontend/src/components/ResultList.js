@@ -9,15 +9,37 @@ class ResultList extends Component {
     
         else {
             /* each key is unique */
-            console.warn(this.props.cards);
-            return (this.props.cards.map(card =>
-                <ResultDetail
-                    key={card.id}
-                    cardTitle={card.title}
-                    description={card.content}
-                    moreInfo="/"
-                    participate="/postChallenge"
-                />));
+// <<<<<<< 41199bb59ff3de85be61afb570e630c9e6c6a38c
+//             console.warn(this.props.cards);
+//             return (this.props.cards.map(card =>
+//                 <ResultDetail
+//                     key={card.id}
+//                     cardTitle={card.title}
+//                     description={card.content}
+//                     moreInfo="/"
+//                     participate="/postChallenge"
+//                 />));
+// =======
+            switch(this.props.val) {
+                case 'Users':
+                    return (this.props.cards.map(card =>
+                        <ResultDetail
+                            key={card.id}
+                            cardTitle={card.username}
+                            moreInfo="/"
+                        />));
+                default:
+                    return (this.props.cards.map(card =>
+                        <ResultDetail
+                            key={card.id}
+                            cardTitle={card.title}
+                            description={card.content}
+                            moreInfo="/"
+                            participate="/postChallenge"
+                        />));
+            }
+            
+// >>>>>>> Working on Search and ResultList
         }
     }
 
