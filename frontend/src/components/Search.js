@@ -39,12 +39,13 @@ class Search extends Component {
         this.setState({
             post: postStr
         })
+        this.fetchResults();
     }
 
     updateValue(evt) {
         this.setState({
             value: evt.target.value
-        })
+        });
     }
 
     fetchResults() {

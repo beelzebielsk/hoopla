@@ -7,6 +7,7 @@ import Submission from './components/Submission';
 import ChallengePage from './components/ChallengePage';
 import Search from './components/Search';
 import Register from './components/Register';
+import Login from './components/Login';
 
 class Routes extends Component {
     render() {
@@ -14,6 +15,7 @@ class Routes extends Component {
             <main>
                 <Switch>
                     <Route exact path='/' component={Home}/>
+                    <Route path='/login' component={Login}/>
                     <Route path='/home' component={Home}/>
                     <Route path='/detail' component={ResultDetail}/>
                     <Route path='/list' component={ResultList}/>
