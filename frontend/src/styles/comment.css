@@ -1,5 +1,27 @@
 .comment-card {
     box-shadow: 2px 2px 2px #888;
-    height: 300px;
-    width: 300px;
+    height: 150px;
+    width: 900px;
+    padding: 50px 50px 150px 50px;
+    display: inline-block;
+}
+
+.my-card {
+    padding: 50px;
+}
+
+.owner-img {
+    border-radius: 50%;
+    width: 100px;
+}
+
+.owner-name {
+    margin-left: 30px;
+    font-family: 'Signika Negative', sans-serif;
+    font-weight: bold;
+}
+
+.comment-text {
+    float: right;
+    margin: 20px 30px 100px 20px;
 }

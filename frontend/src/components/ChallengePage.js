@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/challengepage.css';
 import { Button, Input } from 'react-materialize';
-import Comment from './Comment';
+import Comment from './CommentCard';
 
 class ChallengePage extends Component {
     render() {
