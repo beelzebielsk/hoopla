@@ -13,12 +13,12 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-#password-user {
+#password-user, #password-user2 {
 	border-bottom: 1px solid #000;
 	color: #000;
 }
 
-#password-user:focus, #password-user:active {
+#password-user:focus, #password-user:active, #password-user2:focus, #password-user2:active {
     box-shadow: none;
 }
 

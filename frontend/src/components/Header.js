@@ -33,13 +33,13 @@ class Header extends Component {
     render() {
         return (
             <div className="wrap-header">
-                <Navbar brand={<Link to="/home">hoopla</Link>} right>
-                    <NavItem href="/home">Our Team</NavItem>
+                <Navbar brand="hoopla" to="/home" right>
+                    <NavItem href="/team">Our Team</NavItem>
                     <NavItem href="/createChallenge">Create Challenge</NavItem>
                     <NavItem href="/login">Login</NavItem>
                     <NavItem className="hide-on-mobile" id="search-icon" href="#">
                         <form className="spacing">
-                            <Input autocomplete="off"
+                            <Input autoComplete="off"
                                    placeholder="Search"
                                    type="search"
                                    value={this.state.post}

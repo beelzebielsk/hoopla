@@ -87,11 +87,17 @@ class Submission extends Component {
                     <h4>{this.props.postOrChallenge}</h4>
                     <form className="form-wrap">
                         <label>Photo</label>
-                        <Input type="file"/>
+                        <label className="input-file">
+                            <img alt="upload-icon" src={require('../images/icon-upload.ico')} />
+                            Choose File...
+                            <Input type="file"/>
+                        </label>
+                        <br/>
+                        <br/>
+                        <p><label>Title</label></p>
 
                         <Input value={this.state.title} 
-                               onChange={this.updateTitle} 
-                               label="Title" 
+                               onChange={this.updateTitle}  
                                type="text"/>
 
                         <br/>
@@ -105,10 +111,8 @@ class Submission extends Component {
                                   className="description" 
                                   type="text"/>
 
-                        <form className="button-wrap">
-                            <Button onClick={(e) => this.submitChallenge(e)}>Submit</Button>
+                            <Button className="button-wrap" onClick={(e) => this.submitChallenge(e)}>Submit</Button>
                             {console.log("TITLE, DES:",this.state.title,this.state.description)}
-                        </form>
                     </form>
                 </div>
             </div>

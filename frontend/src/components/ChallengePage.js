@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/challengepage.css';
 import { Button, Input } from 'react-materialize';
-import Comment from './Comment';
+import Comment from './CommentCard';
 
 class ChallengePage extends Component {
     render() {
@@ -15,7 +15,7 @@ class ChallengePage extends Component {
                             Posted by
                         </div>
                         <div className="user-info">
-                            <img className="owner-image" src={this.props.ownerImage}/>
+                            <img className="owner-image" src={require("../images/hoopla-logo.png")}/>
                             <span className="owner-name">{this.props.owner}</span>
                         </div>
                         <div>

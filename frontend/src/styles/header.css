@@ -24,12 +24,13 @@ nav ul a:hover {
     background-color: #DA3B24;
 }
 
-.brand-logo a:hover {
+.brand-logo:hover {
     color: #FFD700;
 }
 
 .side-nav a {
     color: #FFF;
+    background-color: #660099;
 }
 
 .side-nav a:hover {
