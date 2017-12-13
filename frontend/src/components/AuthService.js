@@ -17,7 +17,7 @@ export default class AuthService {
         };
 
         if (() => this.loggedIn()){
-            header['Authentication'] = 'Bearer' + this.getToken
+            header['Authorization'] = 'Bearer' + this.getToken
         }
 
         let domain ='http://localhost:8000';
