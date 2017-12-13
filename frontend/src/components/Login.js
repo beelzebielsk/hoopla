@@ -64,9 +64,7 @@ class Login extends Component {
                             type="password"
                             onChange={this.handleChange}
                         />
-                        <form className="button-wrap">
-                            <Button onClick={(e) => this.handFormSubmit(e)}>Login</Button>
-                        </form>
+                        <Button className="button-wrap" onClick={(e) => this.handFormSubmit(e)}>Login</Button>
                     </form>
                 </div>
             </div>
