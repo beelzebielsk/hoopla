@@ -7,6 +7,7 @@ import Submission from './components/Submission';
 import ChallengePage from './components/ChallengePage';
 import Search from './components/Search';
 import Register from './components/Register';
+import Login from './components/Login';
 
 class Routes extends Component {
     render() {
@@ -19,6 +20,7 @@ class Routes extends Component {
                     <Route path='/list' component={ResultList}/>
                     <Route path='/search' component={Search}/>
                     <Route path="/register" component={Register}/>
+                    <Route path="/login" component={Login}/>
                     <Route path='/challengeDetail' component={() => (<ChallengePage imageURL="" />)}/>
                     <Route path="/createChallenge" component={() => (<Submission postOrChallenge="Create Challenge" />)}/>
                     <Route path="/postChallenge" component={() => (<Submission postOrChallenge="Your Submission" />)}/>
