@@ -1,12 +1,11 @@
 .submission-form {
-    background: #0C77CF;
     margin: auto;
     padding: 40px;
 }
 
 .submission-form h4 {
     margin: 0 0 50px 0;
-    color: #FFF;
+    color: #000;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
 }
@@ -18,7 +17,7 @@
 
 label {
     float:left;
-    color: #FFF;
+    color: #000;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
 }
@@ -32,21 +31,23 @@ input[type=file] {
 }
 
 #input_3, #input_4, input[type=text], input[type=text]:active, input[type=text]:focus:not([readonly]) {
-    border-bottom: 1px solid #FFF;
-    color: #FFF;
+    border-bottom: 1px solid #000;
+    box-shadow: none;
+    color: #000;
     padding-left: 10px;
 }
 
 input[type=text]:focus:not([readonly])+label {
-    color: #FFF;
+    color: #000;
 }
 
 col .input-field label:active {
-    color: #FFF;
+    color: #000;
 }
 
 .description {
     height: 100px;
+    color: #000;
 }
 
 .button-wrap {
@@ -64,8 +65,8 @@ col .input-field label:active {
 }
 
 textarea {
-    border: 1px solid #FFF;
-    color: #FFF;
+    border: 1px solid #000;
+    color: #000;
     font-size: 14px;
     margin-top: 10px;
     padding: 10px;

@@ -7,7 +7,7 @@ class Register extends Component {
         return (
             <div className="registration-form">
                 <h4>Register</h4>
-                <form className="form-wrap register-table">
+                <form>
                     <label>Username</label>
                     <Input type="text" id="register-user"/>
                     <label>E-mail</label>

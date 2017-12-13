@@ -4,12 +4,19 @@ nav {
 
 nav .brand-logo {
     font-family: 'Signika Negative', sans-serif;
+    font-size: 40px;
     color: #FFF;
-    margin: 0 15px;
+    margin: 0 25px;
+}
+
+nav a {
+    color: #FFF;
 }
 
 nav ul a {
-    background-color: #660099;
+    /*background-color: #660099;*/
+    color: #FFF;
+    font-size: 18px;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -89,4 +96,8 @@ nav .input-field label.active {
     box-shadow: none;
     background-color: transparent;
     margin-bottom: 15px;
+}
+
+.dropdown {
+
 }

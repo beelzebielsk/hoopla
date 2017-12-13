@@ -97,7 +97,7 @@ class Search extends Component {
                         </Input>
                     </form>
                 </form>
-                <ResultList cards={this.state.data}/>
+                <ResultList className="results" cards={this.state.data}/>
             </div>
         );
     }

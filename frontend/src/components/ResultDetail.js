@@ -7,7 +7,7 @@ class ResultDetail extends Component {
     render() {
         return(
             <Card
-                header={<CardTitle title="More Info" reveal image={this.props.imageSource} waves='light'/>}
+                header={<CardTitle title="More Info" reveal image={require('../images/challenge-pic-holder.png')} waves='light'/>}
                 title={this.props.cardTitle}
                 reveal={
                     <p>

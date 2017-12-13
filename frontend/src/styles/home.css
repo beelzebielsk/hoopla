@@ -1,5 +1,38 @@
-.results {
-    margin: auto;
-    padding-bottom: 40px;
-    background: #efefef;
+/*.results {*/
+    /*margin: auto;*/
+    /*padding-bottom: 40px;*/
+    /*background: #efefef;*/
+/*}*/
+
+.grad-hero-img {
+    background: #ffe45a; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #ffe45a , #fff3b4); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #ffe45a, #fff3b4); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #ffe45a, #fff3b4); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #ffc44e , #fff3b4); /* Standard syntax (must be last) */
+    color: white;
+    padding: 20px 10%;
+    text-align: right;
+    position:relative;
+    width:100%;
+}
+
+.grad-hero-img img {
+    width: 50%;
+}
+
+.title-container {
+    position: absolute;
+    top: 150px;
+    font-family: 'Signika Negative', sans-serif;
+    font-weight:bold;
+    height: 500px;
+}
+
+@media screen and (max-width: 620px) {
+    .title-container h1 {
+        position: absolute;
+        top: -150px;
+        font-size: 35px;
+    }
 }

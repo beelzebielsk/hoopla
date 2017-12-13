@@ -15,9 +15,13 @@
 /* Masking image using overflow */
 .card .card-image img {
     width: 220px;
-    max-height: 300px;
+    max-height: 200px;
     overflow: hidden;
     border-radius: 0;
+}
+
+.card .card-content .card-title {
+    margin-bottom: 100px;
 }
 
 .participate-button {

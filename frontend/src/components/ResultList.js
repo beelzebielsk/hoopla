@@ -16,14 +16,14 @@ class ResultList extends Component {
                     cardTitle={card.title}
                     description={card.content}
                     moreInfo="/"
-                    participate="/createChallenge"
+                    participate="/postChallenge"
                 />));
         }
     }
 
     render() {
         return (
-            <div>
+            <div className="results">
                 {this.renderCards()}
             </div>
         );

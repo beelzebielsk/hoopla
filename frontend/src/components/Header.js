@@ -36,6 +36,7 @@ class Header extends Component {
                 <Navbar brand={<Link to="/home">hoopla</Link>} right>
                     <NavItem href="/home">Our Team</NavItem>
                     <NavItem href="/createChallenge">Create Challenge</NavItem>
+                    <NavItem href="/login">Login</NavItem>
                     <NavItem className="hide-on-mobile" id="search-icon" href="#">
                         <form className="spacing">
                             <Input autocomplete="off"
@@ -52,7 +53,6 @@ class Header extends Component {
                             state: {post: this.state.post}
                         }}/>}
                     </NavItem>
-                    <NavItem className="hide-on-mobile" href="#"><Icon>more_vert</Icon> </NavItem>
                 </Navbar>
             </div>
         );

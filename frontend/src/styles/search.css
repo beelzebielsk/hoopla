@@ -1,8 +1,8 @@
 #search-bar {
     height: 44px;
-    border-bottom: 1px solid #FFF;
+    border-bottom: 1px solid #000;
     font-family: 'Open Sans', sans-serif;
-    color: #FFF;
+    color: #000;
 }
 
 .btn {
@@ -11,7 +11,7 @@
 }
 
 .bckg-search {
-    background-color: #0C77CF;
+    background: #efefef;
 }
 
 .cf:before, .cf:after{
@@ -34,35 +34,42 @@
     border-radius: 10px;
 }
 
+.results {
+    width: 990px;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
 .form-wrapper input[type=search] {
     padding-left: 1.5rem;
 }
 
 .form-wrapper input[type=search]:focus {
-    color: #FFF;
+    color: #000;
     background-color: transparent;
     outline: 0;
 }
 
 .form-wrapper input[type=search]:active {
-    color: #FFF;
+    color: #000;
     background-color: transparent;
     outline: 0;
 }
 
 .form-wrapper input[type=search]::-webkit-input-placeholder {
-    color: #FFF;
+    color: #000;
     font-weight: normal;
 }
 
 .form-wrapper input[type=search]:-moz-placeholder {
-    color: #FFF;
+    color: #000;
     font-weight: normal;
     font-style: italic;
 }
 
 .form-wrapper input[type=search]:-ms-input-placeholder {
-    color: #FFF;
+    color: #000;
     font-weight: normal;
     font-style: italic;
 }
@@ -78,7 +85,7 @@
     cursor: pointer;
     height: 45px;
     width: 45px;
-    color: #FFF;
+    color: #000;
     background: transparent;
     box-shadow: none;
 }
@@ -95,24 +102,24 @@
 }
 
 .input-field label {
-    color: #FFF;
+    color: #000;
     font-family: 'Open Sans', sans-serif;
 }
 
 .input-field input[type=search]:focus {
     background-color: transparent;
-    color: #FFF;
+    color: #000;
 }
 
 input[type=search]:focus:not([readonly])+label {
-    color: #FFF;
+    color: #000;
 }
 
 .select-wrapper input.select-dropdown {
     font-family: 'Open Sans', sans-serif;
-    color: #FFF;
+    color: #000;
     width: 200px;
-    border-bottom: 1px solid #FFF;
+    border-bottom: 1px solid #000;
     height: 30px;
 }
 
@@ -121,7 +128,7 @@ input[type=search]:focus:not([readonly])+label {
 }
 
 .select-wrapper span.caret {
-    color: #FFF;
+    color: #000;
     font-size: 14px;
     position: relative;
     right: -180px;
@@ -147,5 +154,17 @@ input[type=search]:focus:not([readonly])+label {
     }
     .select-wrapper span.caret {
         top: 50px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .results {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .results {
+        width: 300px;
     }
 }
