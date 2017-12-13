@@ -14,6 +14,7 @@ const userController = {
         const modify   = modelController.modify(this.modify);
 
         router.get   ('/search', this.search);
+        router.get   ('/registration', this.registration);
         router.get   ('/'   ,index);
         router.post  ('/'   ,create);
         router.get   ('/:id',indexOne);
@@ -56,6 +57,32 @@ const userController = {
                         {$like: '%' + (title)}
                     ]
                 }
+            }
+        })
+        .then(result => {
+            res.json(result);
+        })
+        .catch(err => {
+            console.error("Error!");
+            console.error(err);
+            res.status(500).end()
+        });
+    },
+
+    // see if user/email exist
+    registration(req, res) {
+        let {email} = req.query;
+        let {user} = req.query;
+        models.User.findAll({
+            where: { 
+                $or: [
+                    {
+                        email: {$like: (email)}
+                    },
+                    {
+                        username: {$like: (user)}
+                    }
+                ]
             }
         })
         .then(result => {
