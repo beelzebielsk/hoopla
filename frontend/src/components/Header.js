@@ -34,7 +34,7 @@ class Header extends Component {
         return (
             <div className="wrap-header">
                 <Navbar brand="hoopla" to="/home" right>
-                    <NavItem href="/home">Our Team</NavItem>
+                    <NavItem href="/team">Our Team</NavItem>
                     <NavItem href="/createChallenge">Create Challenge</NavItem>
                     <NavItem href="/login">Login</NavItem>
                     <NavItem className="hide-on-mobile" id="search-icon" href="#">
