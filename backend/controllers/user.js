@@ -13,6 +13,7 @@ const userController = {
         const destroy  = modelController.destroy(this.destroy);
         const modify   = modelController.modify(this.modify);
 
+        router.get   ('/search', this.search);
         router.get   ('/'   ,index);
         router.post  ('/'   ,create);
         router.get   ('/:id',indexOne);
@@ -41,6 +42,29 @@ const userController = {
         let id = parseInt(req.params.id);
         return models.User.destroy({
             where : {id}
+        });
+    },
+
+    search(req, res) {
+        let {title} = req.query;
+        models.User.findAll({
+            where: { 
+                username: { 
+                    $or: [
+                        {$like: '%' + (title) + '%'}, 
+                        {$like: (title) + '%'}, 
+                        {$like: '%' + (title)}
+                    ]
+                }
+            }
+        })
+        .then(result => {
+            res.json(result);
+        })
+        .catch(err => {
+            console.error("Error!");
+            console.error(err);
+            res.status(500).end()
         });
     },
 
