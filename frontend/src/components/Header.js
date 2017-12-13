@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import '../styles/header.css';
-import { Link } from 'react-router-dom';
+import AuthService from './AuthService'
 import { Navbar, NavItem, Icon, Input, Button } from 'react-materialize';
 
 class Header extends Component {
@@ -13,6 +13,8 @@ class Header extends Component {
         }
         this.newSearch = this.newSearch.bind(this);
         this.updatePost = this.updatePost.bind(this);
+        this.Auth = new AuthService();
+
     }
 
     updatePost(evt) {
@@ -36,7 +38,8 @@ class Header extends Component {
                 <Navbar brand="hoopla" to="/home" right>
                     <NavItem href="/team">Our Team</NavItem>
                     <NavItem href="/createChallenge">Create Challenge</NavItem>
-                    <NavItem href="/login">Login</NavItem>
+                    {!this.Auth.loggedIn() && <NavItem href="/login">Login</NavItem>}
+                    {this.Auth.loggedIn() && <NavItem href="/login">Logout{this.Auth.logout()}</NavItem>}
                     <NavItem className="hide-on-mobile" id="search-icon" href="#">
                         <form className="spacing">
                             <Input autoComplete="off"
