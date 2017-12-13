@@ -14,10 +14,10 @@ class Team extends Component {
                         <img alt="Laisa with a hair bun" className="images" src={require('../images/laisa.png')}/>
                     </div>
                     <div>
-                        <h4 className="member-name"><a href="linkedin.com/in/adam-ibrahim">Adam Ibrahim</a></h4>
-                        <h4 className="member-name"><a href="linkedin.com/in/abigail-banting">Abigail Banting</a></h4>
-                        <h4 className="member-name"><a href="linkedin.com/in/cpanican">Chris Panican</a></h4>
-                        <h4 className="member-name"><a href="linkedin.com/in/laisa-barros">Laisa Barros</a></h4>
+                        <h4 className="member-name"><a href="https://linkedin.com/in/adam-ibrahim">Adam Ibrahim</a></h4>
+                        <h4 className="member-name"><a href="https://linkedin.com/in/abigail-banting">Abigail Banting</a></h4>
+                        <h4 className="member-name"><a href="https://linkedin.com/in/cpanican">Chris Panican</a></h4>
+                        <h4 className="member-name"><a href="https://linkedin.com/in/laisa-barros">Laisa Barros</a></h4>
                     </div>
                 </div>
             </div>
