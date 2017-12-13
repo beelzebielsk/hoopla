@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Input, Button } from 'react-materialize';
 import '../styles/submission.css';
 import AuthService from './AuthService';
+import ChallengePage from './ChallengePage';
 
 class Submission extends Component {
     constructor(props){
@@ -10,7 +11,8 @@ class Submission extends Component {
             title: '',
             description: '',
             loginError: false,
-            submit: false
+            submit: false,
+            user: 'johndoe'
         };
 
     this.updateTitle = this.updateTitle.bind(this);
@@ -66,45 +68,53 @@ class Submission extends Component {
 
         this.setState({
             submit: true,
-            title: '',
-            description: ''
         })
+        //this.getUsername();
     }
 
     render() {
         return (
             <div className="submission-form">
                 {this.state.loginError && <h3>Please Login</h3>}
-                {this.state.submit && <h3>Submitted!</h3>}
-                <h4>{this.props.postOrChallenge}</h4>
-                <form className="form-wrap">
-                    <label>Photo</label>
-                    <Input type="file"/>
+                {this.state.submit && 
+                    <ChallengePage 
+                        title={this.state.title}
+                        description={this.state.description}
+                        owner={this.state.user}
+                        />
+                    }
+                <div className={this.state.submit && 'hide'}>
+                    <h4>{this.props.postOrChallenge}</h4>
+                    <form className="form-wrap">
+                        <label>Photo</label>
+                        <Input type="file"/>
 
-                    <Input value={this.state.title} 
-                           onChange={this.updateTitle} 
-                           label="Title" 
-                           type="text"/>
+                        <Input value={this.state.title} 
+                               onChange={this.updateTitle} 
+                               label="Title" 
+                               type="text"/>
 
-                    <br/>
+                        <br/>
 
-                    <label>Description</label>
-                    <textarea value={this.state.description} 
-                              onChange={this.updateDescription} 
-                              placeholder="Type Text Here..." 
-                              rows="20" 
-                              cols="40" 
-                              className="description" 
-                              type="text"/>
+                        <label>Description</label>
+                        <textarea value={this.state.description} 
+                                  onChange={this.updateDescription} 
+                                  placeholder="Type Text Here..." 
+                                  rows="20" 
+                                  cols="40" 
+                                  className="description" 
+                                  type="text"/>
 
-                    <form className="button-wrap">
-                        <Button onClick={(e) => this.submitChallenge(e)}>Submit</Button>
-                        {console.log("TITLE, DES:",this.state.title,this.state.description)}
+                        <form className="button-wrap">
+                            <Button onClick={(e) => this.submitChallenge(e)}>Submit</Button>
+                            {console.log("TITLE, DES:",this.state.title,this.state.description)}
+                        </form>
                     </form>
-                </form>
+                </div>
             </div>
         );
     }
 }
 
 export default Submission;
+
