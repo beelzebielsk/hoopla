@@ -66,20 +66,76 @@ const postController = {
     },
 
     search(req, res) {
-        let {title, categories} = req.query;
-        if (!Array.isArray(categories)) {
+        // Expected parameters:
+        // - title: Searches for posts with given text as substring of
+        //   post title.
+        // - content: Searches for posts with given text as substring
+        //   of post content.
+        // - contains: Searches for posts with given text as substring
+        //   of either post title or post content.
+        // - category: searches for posts categorized as given
+        //   category.
+        let {title, category, content, contains} = req.query;
+        // API uses the name category, but makes more sense to call it
+        // categories, since I expect to see more than one.
+        let categories = category;
+        console.log("Query:", req.query);
+        if (categories && !Array.isArray(categories)) {
             categories = [categories];
         }
+
+        let conditions = { $and : [] };
+        let includes = [];
+        let selectNone = [];
+
+        if (title) {
+            conditions['$and'].push({
+                title: textContains(title)
+            })
+        }
+        if (content) {
+            conditions['$and'].push({
+                content: textContains(content)
+            })
+        /* Note: Including categories means that only posts with
+         * categories will show up. Uncategorized posts will no longer
+         * appear in the search results (if a category is specified).
+         */
+        } 
+        if (contains) {
+            conditions['$and'].push({
+                $or : [
+                    { title : textContains(contains) },
+                    { content : textContains(contains) },
+                ]
+            })
+        }
+        if (categories) {
+            includes.push({
+                model : models.Category,
+                where : {
+                    name : {
+                        $and : categories.map(textContains)
+                    }
+                },
+                // No attributes of category in query results.
+                attributes: selectNone,
+            })
+        }
+        /*
+        includes.push({
+            model : models.Post,
+            as: 'submissionTo',
+            attributes: selectNone,
+        })
+        */
+        console.log(JSON.stringify({
+            where: conditions,
+            include: includes
+        }, null, ' '))
         models.Post.findAll({
-            where: { 
-                title: { 
-                    $or: [
-                        {$like: '%' + (title) + '%'}, 
-                        {$like: (title) + '%'}, 
-                        {$like: '%' + (title)}
-                    ]
-                }
-            }
+            where: conditions,
+            include: includes,
         })
         .then(result => {
             res.json(result);
@@ -108,5 +164,13 @@ const postController = {
         })
     },
 }
+
+let textContains = (text) => {
+    return {
+        $or : [
+            {$like: '%' + (text) + '%'}, 
+            {$like: (text) + '%'}, 
+            {$like: '%' + (text)}
+        ]}}
 
 module.exports = postController.registerRouter();

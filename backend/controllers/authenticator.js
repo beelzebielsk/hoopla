@@ -31,6 +31,9 @@ passport.use(strategy);
 // back to someone attempting to login.
 const login = (username, password) => {
     if (!username || !password) {
+        // Promise is used just to keep the type of the return value
+        // the same in all situations. This way, you can always call
+        // ".then" on the result of this function.
         return new Promise((resolve, reject) => {
             resolve({message: "missing username or password"});
         })
