@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon -L app.js",
-    "test": "jest"
+    "test": "jest",
+    "sequelize": "sequelize"
   },
   "contributors": [
     "Laisa Barros",
